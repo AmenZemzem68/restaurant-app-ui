@@ -1,0 +1,76 @@
+// Variables
+$primary-color: #ee9b0d;
+$secondary-color: #6c757d;
+$white-color: #ffffff;
+
+// Mixins
+@mixin flex-center {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+// Global styles
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  
+}
+
+// Header
+.header {
+  background-color: $primary-color;
+  color: $white-color;
+  padding: 10px;
+  text-align: center;
+}
+
+// Content
+.content {
+  background-color: $white-color;
+  padding: 20px;
+  
+  .logo {
+    width: 70%;
+    margin: 10% auto 5% auto;
+  }
+  
+  .title {
+    margin-bottom: 20px;
+    text-align: center;
+    
+    h2 {
+      margin: 0;
+      font-size: 24px;
+    }
+  }
+  
+  .button-container {
+    @include flex-center;
+    flex-direction: column;
+    
+    .login-button{
+        margin-bottom: 10px;
+        width: 80%;
+        color: #ee9b0d;
+        &:hover {
+            background-color: darken(#2ecc71, 10%);
+          }
+    }
+    .signup-button {
+      margin-bottom: 10px;
+      width: 80%;
+      &:hover {
+        background-color: darken(#2ecc71, 10%);
+      }
+    }
+  }
+}
+
+// Responsive styles
+@media screen and (max-width: 768px) {
+  .logo {
+    width: 80%;
+  }
+}

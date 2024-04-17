@@ -1,0 +1,146 @@
+<ion-header [translucent]="true" class="top-bar" >
+  <ion-toolbar>
+    <ion-title> Restaurant Menu    </ion-title>
+    
+    <ion-buttons slot="start">
+      <ion-menu-button menu="main-menu"></ion-menu-button>
+    </ion-buttons>
+
+  </ion-toolbar>
+</ion-header>
+
+<ion-content class="page">
+ 
+
+  <ion-card class="card">
+    <ion-card-content class="textcontent">
+      <ion-card-header>
+        <ion-card-subtitle class="text-2-5">Your Orders</ion-card-subtitle>
+        <ion-button fill="clear" size="small" class="button-view" (click)="viewAllOrders()">View All</ion-button>
+
+      </ion-card-header>
+      
+    </ion-card-content>
+  </ion-card>
+  
+  
+  <div class="list-container">
+    <ion-list class="list">
+      <ion-item *ngFor="let order of orders" class="item">
+        <ion-label class="text-2-6">{{ order.product }} x{{ order.quantity }}</ion-label>
+        <ion-button fill="clear" slot="end" (click)="decreaseQuantity(order)">
+          <ion-icon name="remove-circle-outline"></ion-icon>
+        </ion-button>
+        <ion-button fill="clear" slot="end" (click)="increaseQuantity(order)">
+          <ion-icon name="add-circle-outline"></ion-icon>
+        </ion-button>
+        <ion-button fill="clear" slot="end" (click)="removeOrder(order)">
+          <ion-icon name="close-circle-outline"></ion-icon>
+        </ion-button>
+      </ion-item>
+    </ion-list>
+  </div>
+  
+
+ 
+
+  <ion-segment class="tabgroup" (ionChange)="segmentChanged($event)">
+    <ion-segment-button value="food" checked>
+      <ion-label>Food</ion-label>
+      <ion-img class="image" src="../../assets/food.webp"></ion-img>
+    </ion-segment-button>
+    <ion-segment-button value="drinks">
+      <ion-label>Drinks</ion-label>
+      <ion-img class="image" src="../../assets/drinks.png"></ion-img>
+    </ion-segment-button>
+  </ion-segment>
+
+  <ion-card class="card food-content">
+    <swiper-container>
+      <swiper-slide>
+    <ion-card-header>
+      <ion-card-title class="text-2-7">Juicy Burger</ion-card-title>
+    </ion-card-header>
+    <ion-card-content>
+      <ion-item class="item">
+        <ion-img class="image" src="../../assets/burger.png"></ion-img>
+        <ion-label>Classic Burger</ion-label>
+        <ion-label slot="end">$10</ion-label>
+        <ion-button fill="clear" slot="end" (click)="addToOrders('Classic Burger')"> <!-- Appel de la fonction avec le produit correspondant -->
+          <ion-icon name="checkmark-outline"></ion-icon>
+        </ion-button>
+       
+      </ion-item>
+    </ion-card-content>
+  </swiper-slide>
+
+  <swiper-slide>
+
+    <ion-card-header>
+      <ion-card-title class="text-2-7">Spagetti</ion-card-title>
+    </ion-card-header>
+    <ion-card-content>
+      <ion-item class="item">
+        <ion-img class="image" src="../../assets/spagetti.png"></ion-img>
+        <ion-label>Spagetti</ion-label>
+        <ion-label slot="end">$12</ion-label>
+        <ion-button fill="clear" slot="end" (click)="addToOrders('Spagetti')"> <!-- Appel de la fonction avec le produit correspondant -->
+          <ion-icon name="checkmark-outline"></ion-icon>
+        </ion-button>
+        
+      </ion-item>
+    </ion-card-content>
+  </swiper-slide>
+  </swiper-container>
+  </ion-card>
+
+  <ion-card class="card drinks-content" style="display: flex;">
+    <swiper-container>
+
+      <swiper-slide>
+    <ion-card-header>
+      <ion-card-title class="text-2-7">Refreshing Lemonade</ion-card-title>
+    </ion-card-header>
+    <ion-card-content>
+      <ion-item class="item">
+        <ion-img class="image" src="../../assets/lemonade.webp"></ion-img>
+        <ion-label>Lemonade</ion-label>
+        <ion-label slot="end">$5</ion-label>
+        <ion-button fill="clear" slot="end" (click)="addToOrders('Lemonade')"> <!-- Appel de la fonction avec le produit correspondant -->
+          <ion-icon name="checkmark-outline"></ion-icon>
+        </ion-button>
+        
+      </ion-item>
+    </ion-card-content>
+  </swiper-slide>
+
+  <swiper-slide>
+    <ion-card-header>
+      <ion-card-title class="text-2-7">Jus Fraise</ion-card-title>
+    </ion-card-header>
+    <ion-card-content>
+      <ion-item class="item">
+        <ion-img class="image" src="../../assets/jusfraise.png"></ion-img>
+        <ion-label>Jus Fraise</ion-label>
+        <ion-label slot="end">$6</ion-label>
+        <ion-button fill="clear" slot="end" (click)="addToOrders('Jus Fraise')"> <!-- Appel de la fonction avec le produit correspondant -->
+          <ion-icon name="checkmark-outline"></ion-icon>
+        </ion-button>
+      </ion-item>
+    </ion-card-content>
+  </swiper-slide>
+
+
+  </swiper-container>
+  </ion-card>
+
+
+  <ion-button class="button cancel-button"> 
+    <ion-label slot="start">Cancel</ion-label>
+  </ion-button>
+  
+  <ion-button class="button confirm-button"> 
+    <ion-label slot="end">Confirm Order</ion-label>
+  </ion-button>
+  
+</ion-content>
