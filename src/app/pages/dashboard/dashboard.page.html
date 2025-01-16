@@ -1,0 +1,70 @@
+<ion-content class="ion-padding" id="main-content">
+  <div id="header" class="ion-margin-bottom">
+    <ion-menu-button menu="main-menu"></ion-menu-button>
+    <div id="location">
+      <ion-img src="../../assets/dashboard.png"></ion-img>
+      <h4 class="ion-no-margin">Dashboard</h4>
+    </div>
+    <div id="avatar">
+      <ion-img [src]="photoUrl"></ion-img>
+    </div>
+  </div>
+
+  <ion-grid>
+    <!-- Orders Overview Chart -->
+    <ion-row>
+      <ion-col>
+        <ion-card class="chart-card">
+          <ion-card-header>
+            <ion-card-title>Orders Overview</ion-card-title>
+          </ion-card-header>
+          <ion-card-content>
+            <canvas style="width: 100%; height: 300px" #verticalChart></canvas>
+          </ion-card-content>
+        </ion-card>
+      </ion-col>
+    </ion-row>
+
+    <!-- Orders Table -->
+    <ion-row>
+      <ion-col>
+        <ion-card class="orders">
+          <ion-row>
+            <ion-col>
+              <ion-card-header>
+                <ion-card-title>Orders</ion-card-title>
+              </ion-card-header>
+            </ion-col>
+            <ion-col size="4">
+              <ion-searchbar
+                [(ngModel)]="commandesearchTerm"
+                (ionInput)="filterCommandes()"
+              ></ion-searchbar>
+            </ion-col>
+          </ion-row>
+          <ion-card-content>
+            <ng-container
+              *ngIf="filteredcommandes.length > 0; else noCommandes"
+            >
+              <app-reusable-table
+                [data]="filteredcommandes"
+                [columns]="[
+                  { key: 'id', title: 'Id' },
+                  { key: 'dateCommande', title: 'Order Date' },
+                  { key: 'client.nom', title: 'Client First Name' },
+                  { key: 'client.prenom', title: 'Client Last Name' },
+                  { key: 'prixTotal', title: 'Price' },
+                  { key: 'table.numero', title: 'Table' }
+                ]"
+                [actions]="false"
+              ></app-reusable-table>
+            </ng-container>
+            <ng-template #noCommandes>
+              <p>No commandes found.</p>
+            </ng-template>
+          </ion-card-content>
+        </ion-card>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+</ion-content>

@@ -26,3 +26,24 @@
 @import "@ionic/angular/css/text-alignment.css";
 @import "@ionic/angular/css/text-transformation.css";
 @import "@ionic/angular/css/flex-utils.css";
+@import "./theme/fonts.scss";
+
+* {
+  font-family: Gilroy;
+}
+
+
+ion-searchbar{
+  margin-top: 5px;
+  .searchbar-input-container{
+    input{
+      font-size: 18px !important;
+    }
+    .searchbar-search-icon{
+      color: #53b175;
+      top: 6px !important;
+      width: 25px;
+      height: 25px;
+    }
+  }
+}

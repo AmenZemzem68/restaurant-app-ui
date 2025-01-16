@@ -1,6 +1,10 @@
+
 import { Component, OnInit } from '@angular/core';
-import { MenuController } from '@ionic/angular';
 import { Router } from '@angular/router';
+import { FacebookLogin } from '@capacitor-community/facebook-login';
+import { MenuController } from '@ionic/angular';
+import { AuthService } from './services/auth.service';
+
 
 @Component({
   selector: 'app-root',
@@ -9,13 +13,30 @@ import { Router } from '@angular/router';
 })
 export class AppComponent implements OnInit {
 
-  constructor(private menuController: MenuController , private router: Router) {}
+
+  constructor(private router : Router , private menuController : MenuController) {
+    this.initializeApp();
+  }
 
   ngOnInit() {
+    this.initializeApp();
+  }
+
+  async initializeApp() {
+    await FacebookLogin.initialize({ appId: '828167739127229' });
+  }
+  goToMenu() {
+    this.router.navigateByUrl('/home');
     this.menuController.enable(true, 'main-menu');
   }
 
   goToProfile() {
     this.router.navigateByUrl('/profil');
+    this.menuController.enable(true, 'main-menu');
+  }
+
+  goToAllOrder() {
+    this.router.navigateByUrl('/listcommandes');
+    this.menuController.enable(true, 'main-menu');
   }
 }
